@@ -1,5 +1,4 @@
 import React from 'react'
-import NavBar from '../NavBar/NavBar'
 import SimpleSlider from './SimpleSlider/SimpleSlider'
 import ItemListContainer from '../NavBar/ItemListContainer/ItemListContainer'
 
@@ -8,7 +7,6 @@ const HomeView = () => {
     
     return (
         <>
-        <NavBar />
         <ItemListContainer greeting={saludo} />
         <SimpleSlider />
         </>
