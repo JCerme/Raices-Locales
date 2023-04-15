@@ -4,6 +4,7 @@ import Inicio from '../components/HomeView/HomeView';
 import Error from '../components/Error/Error';
 import NavBar from '../components/NavBar/NavBar';
 import Shop from '../components/Shop/Shop';
+import DetailedProd from '../components/DetailedProd/DetailedProd';
 
 const PrincipalRouter = () => {
   return (
@@ -14,6 +15,7 @@ const PrincipalRouter = () => {
         <Route path="/inicio" element={<Inicio/>}/>
         <Route path="/home" element={<Inicio/>}/>
         <Route path="/shop" element={<Shop/>}/>
+        <Route path="/products/:id" element={<DetailedProd />}></Route>
         <Route path="*" element={<Error/>}/>
       </Routes>
     </BrowserRouter>

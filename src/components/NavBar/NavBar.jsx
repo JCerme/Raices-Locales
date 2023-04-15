@@ -2,14 +2,19 @@ import React from 'react'
 import Logo from './Logo/Logo'
 import Menu from './Menu/Menu'
 import CartWidget from './CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   let items = 2;
   return (
     <header className="header">
-        <Logo/>
+        <Link to="/">
+          <Logo/>
+        </Link>
         <Menu />
-        <CartWidget countItems={items}/>
+        <Link to="/shop">
+          <CartWidget countItems={items}/>
+        </Link>
     </header>
   )
 }

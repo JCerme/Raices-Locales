@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from './Hero/Hero'
 import Filters from './Filters/Filters'
-import ProdsList from './ProdsList.jsx/ProdsList'
+import ItemList from './ItemList/ItemList'
 
 
 const Shop = () => {
@@ -12,7 +12,7 @@ const Shop = () => {
             <Hero title={title}/>
             <div className='container'>
                 <Filters />
-                <ProdsList />
+                <ItemList />
             </div>
         </div>
     )
