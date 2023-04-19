@@ -12,7 +12,7 @@ export default function SimpleSlider() {
   return (
     <Slider {...settings}>
       <div className="carousel-item">
-        <img src="/media/pexels-quang-nguyen-vinh-2166456.jpg" />
+        <img src="/media/pexels-quang-nguyen-vinh-2166456.jpg" alt=""/>
         <div className="overlay"></div>
         <div className="content">
           <h2>Gifts with a Personal Touch</h2>
@@ -20,7 +20,7 @@ export default function SimpleSlider() {
         </div>
       </div>
       <div className="carousel-item">
-        <img src="/media/pexels-andrea-piacquadio-3811832.jpg" />
+        <img src="/media/pexels-andrea-piacquadio-3811832.jpg"  alt=""/>
         <div className="overlay"></div>
         <div className="content">
           <h2>Discover Handcrafted Treasures</h2>
@@ -28,7 +28,7 @@ export default function SimpleSlider() {
         </div>
       </div>
       <div className="carousel-item">
-        <img src="/media/pexels-gül-işık-3084342.jpg" />
+        <img src="/media/pexels-gül-işık-3084342.jpg"  alt=""/>
         <div className="overlay"></div>
         <div className="content">
           <h2>Savor Local Flavors</h2>
@@ -36,7 +36,7 @@ export default function SimpleSlider() {
         </div>
       </div>
       <div className="carousel-item">
-        <img src="/media/pexels-valeria-ushakova-3094225.jpg" />
+        <img src="/media/pexels-valeria-ushakova-3094225.jpg"  alt=""/>
         <div className="overlay"></div>
         <div className="content">
           <h2>Eco-Friendly & Sustainable</h2>

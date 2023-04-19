@@ -4,29 +4,30 @@ import { Link } from 'react-router-dom'
 import AddToCart from '../../../AddToCart/AddToCart';
 
 const Product = ({prod}) => {
-    console.log(prod)
     return (
-        <Link to={`/products/${prod.id}`}>
-            <div className="prod">
+        <div className="prod">
+            <Link to={`/products/${prod.id}`}>
                 <div className="image">
                     <img src={prod.image} alt="" />
                 </div>
-                <div className="content">
+            </Link>
+            <div className="content">
+                <Link to={`/products/${prod.id}`}>
                     <h2>{prod.title}</h2>
-                    <p className="price">
-                        <span>{prod.price + '€'}</span>
-                        <span>{Math.floor(prod.price * 1.5) + '€'}</span>
-                    </p>
-                    <div className="stock">
-                        <div className="available">
-                            {prod.rating.count} ud. in stock
-                        </div>
-                        <CounterStock prod={prod} />
+                </Link>
+                <p className="price">
+                    <span>{prod.price + '€'}</span>
+                    <span>{Math.floor(prod.price * 1.5) + '€'}</span>
+                </p>
+                <div className="stock">
+                    <div className="available">
+                        {prod.rating.count} ud. in stock
                     </div>
+                    <CounterStock prod={prod} />
                 </div>
-                <AddToCart prod={prod} />
             </div>
-        </Link>
+            <AddToCart prod={prod} />
+        </div>
     )
 }
 

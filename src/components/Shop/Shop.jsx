@@ -1,6 +1,5 @@
 import React from 'react'
 import Hero from './Hero/Hero'
-import Filters from './Filters/Filters'
 import ItemList from './ItemList/ItemList'
 
 
@@ -11,7 +10,6 @@ const Shop = () => {
         <div id="shop">
             <Hero title={title}/>
             <div className='container'>
-                <Filters />
                 <ItemList />
             </div>
         </div>

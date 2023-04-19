@@ -16,6 +16,7 @@ const PrincipalRouter = () => {
         <Route path="/home" element={<Inicio/>}/>
         <Route path="/shop" element={<Shop/>}/>
         <Route path="/products/:id" element={<DetailedProd />}></Route>
+        <Route path="/products/category/:categoryId" element={<Shop />}></Route>
         <Route path="*" element={<Error/>}/>
       </Routes>
     </BrowserRouter>
