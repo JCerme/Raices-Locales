@@ -236,7 +236,7 @@ header.header{
 
 
 // SHOP
-#shop{
+#shop, #cart{
     .hero{
         height: 30vh;
         padding: 0 30%;
@@ -280,6 +280,7 @@ header.header{
                 cursor: pointer;
                 color: white;
                 display: flex;
+                text-align: left;
             }
             .prod{
                 border: 1px solid #2c2c2c;
@@ -455,6 +456,30 @@ button#add-to-cart{
             margin: 0;
             margin-top: 50px;
             width: 100%;
+        }
+    }
+}
+
+
+#cart{
+    .products{
+        display: flex;
+        flex-direction: column;
+        gap: 50px;
+        .prod{
+            display: flex;
+            gap: 50px;
+            align-items: center;
+            .image{
+                width: 150px;
+                background-color: white;
+                img{
+                    width: 100%;
+                    padding: 20px;
+                    aspect-ratio: 1 / 1;
+                    object-fit: contain;
+                }
+            }
         }
     }
 }

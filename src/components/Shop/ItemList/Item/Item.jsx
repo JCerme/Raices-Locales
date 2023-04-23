@@ -21,12 +21,12 @@ const Product = ({prod}) => {
                 </p>
                 <div className="stock">
                     <div className="available">
-                        {prod.rating.count} ud. in stock
+                        {Math.floor(prod.rating?.count / 10)} ud. in stock
                     </div>
-                    <CounterStock prod={prod} />
+                    <CounterStock prod={prod} max={Math.floor(prod.rating?.count / 10)} />
                 </div>
             </div>
-            <AddToCart prod={prod} />
+            <AddToCart prod={prod}/>
         </div>
     )
 }

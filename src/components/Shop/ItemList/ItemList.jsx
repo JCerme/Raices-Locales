@@ -23,6 +23,7 @@ const ItemList = () => {
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
+                    data.forEach((item) => item.quantity = 1)
                     setProducts(data);
                     setCurrentUrl(url);
                 })

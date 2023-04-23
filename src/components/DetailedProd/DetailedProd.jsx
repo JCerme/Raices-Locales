@@ -28,8 +28,8 @@ const DetailedProd = () => {
                     <span>{product.price * 1.5 + '€'}</span>
                 </div>
                 <div className="stock">
-                    <CounterStock prod={product}/>
-                    <p>Available stock: {product.rating?.count} ud.</p>
+                    <CounterStock prod={product} max={Math.floor(product.rating?.count / 10)}/>
+                    <p>Available stock: {Math.floor(product.rating?.count / 10)} ud.</p>
                 </div>
                 <AddToCart />
             </div>

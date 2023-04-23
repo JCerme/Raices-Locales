@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 
-export const CounterStock = ({prod}) => {
-    const [ stock, setStock ] = useState(1)
+export const CounterStock = ({prod, max}) => {
+    const [ stock, setStock ] = useState(prod.quantity)
     const [ error, setError ] = useState("")
 
     const addStock = () => {
-        if(stock < prod.rating.count){
+        if(stock < max){
             setStock(stock + 1)
             setError("")
+            prod.quantity = stock + 1;
         } else {
             setError("No hay más productos en stock")
         }
@@ -18,6 +19,7 @@ export const CounterStock = ({prod}) => {
         if(stock > 1){
             setStock(stock - 1)
             setError("")
+            prod.quantity = stock - 1;
         }
     }
     
