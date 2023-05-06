@@ -2,39 +2,42 @@ import React from 'react'
 import Item from './Item/Item'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+import { db } from '../../../firebase/config'
 
 const ItemList = () => {
-    const params = useParams();
-
-    let url;
-    if (params.categoryId){
-        url = 'https://fakestoreapi.com/products/category/' + params.categoryId;
-    } else {
-        url = 'https://fakestoreapi.com/products';
-    }
+    const { categoryId } = useParams();
     
     const [products, setProducts] = useState([]);
     const [loader, setLoader] = useState(true);
-    const [currentUrl, setCurrentUrl] = useState(url);
 
     useEffect(() => {
         setLoader(true);
-        setTimeout(() => {
-            fetch(url)
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach((item) => item.quantity = 1)
-                    setProducts(data);
-                    setCurrentUrl(url);
+        if(categoryId){
+            db().collection('products').where('category', '==', categoryId).get()
+                .then((res) => {
+                    const prods = res.docs.map((doc) => {
+                        return {id:doc.id, ...doc.data(), quantity: 1}
+                    })
+                    setProducts(prods)
                 })
                 .catch(err => console.error(err))
                 .finally(setLoader(false));
-        }, 2000);
-    }, [url]);
+        } else {
+            db().collection('products').get()
+                .then((res) => {
+                    const prods = res.docs.map((doc) => {
+                        return {id:doc.id, ...doc.data(), quantity: 1}
+                    })
+                    setProducts(prods)
+                })
+                .catch(err => console.error(err))
+                .finally(setLoader(false));
+        }
+    }, [categoryId]);
     
         
     if (!loader) {
-        if (currentUrl === url && products.length > 0) {
+        if (products.length > 0) {
             return (
                 <div className="products">
                     {products.map(prod => {

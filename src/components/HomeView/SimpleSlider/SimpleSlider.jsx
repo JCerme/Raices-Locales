@@ -10,7 +10,7 @@ export default function SimpleSlider() {
     slidesToScroll: 1
   };
   return (
-    <Slider {...settings}>
+    <Slider {...settings} className="simple-slider">
       <div className="carousel-item">
         <img src="/media/pexels-quang-nguyen-vinh-2166456.jpg" alt=""/>
         <div className="overlay"></div>

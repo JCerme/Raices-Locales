@@ -1,14 +1,16 @@
 import React from 'react'
 import SimpleSlider from './SimpleSlider/SimpleSlider'
-import ItemListContainer from '../NavBar/ItemListContainer/ItemListContainer'
+import Cta from './CTA/Cta'
+import ProductSlider from './ProductSlider/ProductSlider';
 
 const HomeView = () => {
-    const saludo = "¡Welcome to Raíces Locales! The best place to buy your favourites handmades products.";
+    const greeting = "¡Welcome to Raíces Locales! The best place to buy your favourites handmades products.";
     
     return (
         <>
-        <ItemListContainer greeting={saludo} />
         <SimpleSlider />
+        <ProductSlider/>
+        <Cta greeting={greeting} />
         </>
     )
 }

@@ -11,18 +11,23 @@ const Menu = () => {
           <NavLink to="/shop" className={({ isActive }) => isActive ? "active" : ""}>
             <li>Shop</li>
           </NavLink>
-          <NavLink to="/products/category/jewerely" className={({ isActive }) => isActive ? "active" : ""}>
-            <li>Jewerly</li>
-          </NavLink>
-          <NavLink to="/products/category/electronics" className={({ isActive }) => isActive ? "active" : ""}>
-            <li>Electronics</li>
-          </NavLink>
-          <NavLink to={"/products/category/"+encodeURI("men's clothing")}  className={({ isActive }) => isActive ? "active" : ""}>
-            <li>Men</li>
-          </NavLink>
-          <NavLink to={"/products/category/"+encodeURI("women's clothing")} className={({ isActive }) => isActive ? "active" : ""}>
-            <li>Women</li>
-          </NavLink>
+          <div className="dropdown-group">
+            <li>Categories</li>
+            <div className="dropdown">
+              <NavLink to="/category/necklaces" className={({ isActive }) => isActive ? "active" : ""}>
+                <li>Necklaces</li>
+              </NavLink>
+              <NavLink to="/category/bracelets" className={({ isActive }) => isActive ? "active" : ""}>
+                <li>Bracelets</li>
+              </NavLink>
+              <NavLink to="/category/wallets"  className={({ isActive }) => isActive ? "active" : ""}>
+                <li>Wallets</li>
+              </NavLink>
+              <NavLink to="/category/other" className={({ isActive }) => isActive ? "active" : ""}>
+                <li>Other</li>
+              </NavLink>
+            </div>
+          </div>
         </ul>
     </nav>
   )

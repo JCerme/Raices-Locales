@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ItemListContainer = ({greeting}) => {
+const Cta = ({greeting}) => {
   return (
     <div className='greeting'>
       <h1>{greeting}</h1>
@@ -17,4 +17,4 @@ const ItemListContainer = ({greeting}) => {
   )
 }
 
-export default ItemListContainer
+export default Cta

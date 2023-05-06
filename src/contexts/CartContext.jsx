@@ -13,6 +13,9 @@ export const CartProvider = ({children}) => {
     const getQuantity = () => {
         return cart.length;
     }
+    const getTotalQuantity = () => {
+        return cart.reduce((acco, product) => acco += (product.quantity), 0)
+    }
     const totalPrice = () => {
         return cart.reduce((acco, product) => acco += (product.price * product.quantity), 0)
     }
@@ -24,6 +27,7 @@ export const CartProvider = ({children}) => {
             addToCart,
             getCart,
             getQuantity,
+            getTotalQuantity,
             totalPriceUnit,
             totalPrice
             }}>
