@@ -2,9 +2,10 @@ import React from 'react'
 import { CartContext } from '../../../contexts/CartContext'
 import { CounterStock } from '../../CounterStock/CounterStock'
 import { useContext } from 'react'
+import { BsFillTrash3Fill } from 'react-icons/bs';
 
 const Summary = () => {
-    const { getCart, getQuantity, getTotalQuantity } = useContext(CartContext)
+    const { getCart, getQuantity, getTotalQuantity, removeFromCart } = useContext(CartContext)
     return (
         <div className="products">
             <h1>You have {getTotalQuantity()} ud. in {getQuantity()} items.</h1>
@@ -22,6 +23,9 @@ const Summary = () => {
                         <div className="stock">
                             <CounterStock prod={prod} max={prod.stock}/>
                             <p>Available stock: {prod.stock} ud.</p>
+                        </div>
+                        <div className="delete" onClick={() => removeFromCart(prod)}>
+                            <BsFillTrash3Fill/>
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@ const ItemList = () => {
     
         
     if (!loader) {
-        if (products.length > 0) {
+        if (products) {
             return (
                 <div className="products">
                     {products.map(prod => {
