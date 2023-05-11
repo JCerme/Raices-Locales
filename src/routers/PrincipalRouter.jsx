@@ -19,7 +19,7 @@ const PrincipalRouter = () => {
           <Route path="/shop" element={<Shop/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/checkout" element={<Checkout/>}/>
-          <Route path="/products/:id" element={<DetailedProd />}></Route>
+          <Route path="/item/:id" element={<DetailedProd />}></Route>
           <Route path="/category/:categoryId" element={<Shop />}></Route>
           <Route path="*" element={<Error/>}/>
         </Routes>

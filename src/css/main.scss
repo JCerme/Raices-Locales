@@ -676,6 +676,10 @@ button#add-to-cart{
             }
         }
     }
+    label.required::after{
+        content: ' *';
+        color: red;
+    }
     input{
         background-color: #232323;
         border: 1px solid black;
@@ -685,6 +689,14 @@ button#add-to-cart{
         margin-top: 5px;
         color: white;
         font-size: 16px;
+    }
+    input.error{
+        outline: 1px solid red;
+    }
+    .error-message{
+        margin-top: 5px;
+        display: block;
+        color: red;
     }
     .summary{
         background-color: #232323;
@@ -711,14 +723,20 @@ button#add-to-cart{
                 margin: 0;
             }
         }
-        button{
-            width: 100%;
-            background-color: #151515;
-            color: gray;
-            border: 0;
-            padding: 10px;
-            border-radius: 5px 5px 10px 10px;
-            margin-top: 20px;
+    }
+    .submit-checkout{
+        width: 100%;
+        background-color: white;
+        font-weight: 500;
+        color: #151515;
+        border: 0;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 20px;
+        transition: 300ms;
+        &:disabled{
+            opacity: 0.2;
+            transition: 300ms;
         }
     }
 }

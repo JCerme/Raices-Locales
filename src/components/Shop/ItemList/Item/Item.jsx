@@ -6,13 +6,13 @@ import AddToCart from '../../../AddToCart/AddToCart';
 const Product = ({prod}) => {
     return (
         <div className="prod">
-            <Link to={`/products/${prod.id}`}>
+            <Link to={`/item/${prod.id}`}>
                 <div className="image">
                     <img src={prod.image} alt="" />
                 </div>
             </Link>
             <div className="content">
-                <Link to={`/products/${prod.id}`}>
+                <Link to={`/item/${prod.id}`}>
                     <h2>{prod.title}</h2>
                 </Link>
                 <p className="price">
