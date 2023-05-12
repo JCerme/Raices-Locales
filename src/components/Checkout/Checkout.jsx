@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FormFields } from './FormFields/FormFields';
 import { Summary } from './Summary/Summary';
+import Swal from 'sweetalert2'
+import { db } from '../../firebase/config';
+import { CartContext } from '../../contexts/CartContext';
+
 
 const Checkout = () => {
   const [formFields, setFormFields] = useState({
-    name: '',
+    firstname: '',
     surname: '',
     phone: '',
     email: '',
@@ -15,7 +19,7 @@ const Checkout = () => {
   });
 
   const [formErrors, setFormErrors] = useState({
-    name: null,
+    firstname: null,
     surname: null,
     phone: null,
     email: null,
@@ -24,13 +28,6 @@ const Checkout = () => {
     date: null,
     number: null,
   });
-
-  const handleInputChange = (e) => {
-    setFormFields({
-      ...formFields,
-      [e.target.name]: e.target.value,
-    });
-  };
 
   const validateField = (fieldName) => {
     const value = formFields[fieldName];
@@ -54,42 +51,91 @@ const Checkout = () => {
         errorMessage = 'El formato de número de teléfono es erróneo.';
       }
     }
-    
+
     setFormErrors({
       ...formErrors,
       [fieldName]: errorMessage,
     });
   };
 
+  const { setCart, getCart, totalPriceIVA } = useContext(CartContext)
+  const validateCheckout = (e) => {
+    e.preventDefault();
+
+    if(!hasErrors()) {
+      const {firstname, surname, phone, email} = formFields;
+      const order = {
+        buyer: {
+          email,
+          firstname,
+          surname,
+          phone,
+        },
+        payed: true,
+        items: getCart(),
+        total_price: totalPriceIVA(),
+        date: new Date().toLocaleString('es-ES'),
+      }
+      console.log(order);
+      
+      db().collection('orders').add(order)
+        .then((res) => {
+          Swal.fire({
+            icon: 'success',
+            title: 'Order created successfully!',
+            text: `Save your order ticker number: ${res.id}`,
+            willClose: () => {
+              setCart([])
+              localStorage.removeItem("cart")
+              window.location.replace('/')
+            }
+          })
+        })
+  
+      // carrito.forEach((item) => {
+      //   const docRef = db().collection('products').doc(item.id)
+  
+      //   docRef.get()
+      //     .then((doc) => {
+      //       docRef.update({
+      //         stock: doc.data().stock - item.counter
+      //       })
+      //     })
+      // })
+    }
+  }
+
   const hasErrors = () => {
+    if(formFields.length===0) return true;
     return Object.values(formErrors).some(error => error !== null);
   };
   
   return (
-    <div className='container' id='checkout'>
-      <div className="data">
-        <h1>
-          Fill the checkout form
-        </h1>
-        <form>
-          <FormFields 
-            formFields={formFields} 
-            formErrors={formErrors}
-            handleInputChange={handleInputChange}
-            validateField={validateField}
-          />
-        </form>
+    <form method="post" onSubmit={(e) => validateCheckout(e)}>
+      <div className='container' id='checkout'>
+        <div className="data">
+          <h1>
+            Fill the checkout form
+          </h1>
+            <FormFields 
+              formFields={formFields} 
+              setFormFields={setFormFields}
+              formErrors={formErrors}
+              validateField={validateField}
+            />
+        </div>
+        <div className="summary">
+          <Summary />
+          <button
+            type='submit'
+            disabled={hasErrors()}
+            className='submit-checkout'
+          >
+            PAY ORDER
+          </button>
+        </div>
       </div>
-      <div className="summary">
-        <Summary />
-        <button
-          disabled={hasErrors()}
-          className='submit-checkout'
-        >
-          PAY ORDER
-        </button>
-      </div>
-    </div>
+    </form>
   )
 }
 

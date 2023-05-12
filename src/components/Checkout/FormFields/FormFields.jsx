@@ -1,23 +1,30 @@
 import React from 'react'
 
-export const FormFields = ({ formFields, formErrors, handleInputChange, validateField }) => {
+export const FormFields = ({ formFields, setFormFields, formErrors, validateField }) => {
+    const handleInputChange = (e) => {
+        setFormFields({
+          ...formFields,
+          [e.target.name]: e.target.value,
+        });
+    };
+
     return (
         <>
             <div className="personal">
                 <h2><span>1</span>Personal Info</h2>
                 <div className="form-group">
                     <div className="name">
-                        <label htmlFor="name" className='required'>Name:</label>
+                        <label htmlFor="firstname" className='required'>Name:</label>
                         <input
                             type="text"
-                            name="name"
-                            id="name"
-                            value={formFields.name}
+                            name="firstname"
+                            id="firstname"
+                            value={formFields.firstname}
                             onChange={handleInputChange}
-                            onBlur={() => validateField('name')}
-                            className={formErrors.name ? 'error' : ''}
+                            onBlur={() => validateField('firstname')}
+                            className={formErrors.firstname ? 'error' : ''}
                         />
-                        {formErrors.name && <span className="error-message">{formErrors.name}</span>}
+                        {formErrors.firstname && <span className="error-message">{formErrors.firstname}</span>}
                     </div>
                     <div className="surname">
                         <label htmlFor="surname" className='required'>Surname:</label>

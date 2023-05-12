@@ -44,7 +44,11 @@ export const CartProvider = ({children}) => {
     }
 
     const totalPrice = () => {
-        return cart.reduce((acco, product) => acco += ((product.sale_price || product.price) * product.quantity), 0)
+        return (cart.reduce((acco, product) => acco += ((product.sale_price || product.price) * product.quantity), 0)).toFixed(2)
+    }
+
+    const totalPriceIVA = () => {
+        return (totalPrice() * 1.21).toFixed(2)
     }
 
     const totalPriceUnit = (product) => {
@@ -53,13 +57,15 @@ export const CartProvider = ({children}) => {
 
     return (
         <CartContext.Provider value={{
+            setCart,
             addToCart,
             removeFromCart,
             getCart,
             getQuantity,
             getTotalQuantity,
             totalPriceUnit,
-            totalPrice
+            totalPrice,
+            totalPriceIVA
             }}>
                 {children}
         </CartContext.Provider>

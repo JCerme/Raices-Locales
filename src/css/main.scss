@@ -615,6 +615,7 @@ button#add-to-cart{
                 .content{
                     padding: 0;
                     position: relative;
+                    flex: 1;
                     h1{
                         text-align: left;
                         font-size: 21px;
@@ -629,6 +630,7 @@ button#add-to-cart{
                         position: absolute;
                         right: 0;
                         bottom: 0;
+                        cursor: pointer;
                     }
                 }
             }

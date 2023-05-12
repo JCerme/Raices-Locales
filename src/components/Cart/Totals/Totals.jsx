@@ -3,12 +3,12 @@ import { CartContext } from '../../../contexts/CartContext'
 import { Link } from 'react-router-dom';
 
 const Totals = () => {
-    const { totalPrice } = useContext(CartContext);
+    const { totalPrice, totalPriceIVA } = useContext(CartContext);
     return (
         <div className='totals'>
             <div className="subtotal">
                 <p>Subtotal:</p>
-                <span>{(totalPrice()).toFixed(2) || 0}€</span>
+                <span>{(totalPrice()) || 0}€</span>
             </div>
             <div className="iva">
                 <p>IVA:</p>
@@ -20,7 +20,7 @@ const Totals = () => {
             </div>
             <div className="total">
                 <p>Total:</p>
-                <span>{(totalPrice() * 1.21).toFixed(2) || 0}€</span>
+                <span>{totalPriceIVA() || 0}€</span>
             </div>
             <Link to="/checkout">
                 <button>Go to Payment</button>

@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { CartContext } from '../../../contexts/CartContext'
 
 export const Summary = () => {
-    const { getCart, totalPrice } = useContext(CartContext)
+    const { getCart, totalPrice, totalPriceIVA } = useContext(CartContext)
 
     return (
         <>
@@ -13,9 +13,13 @@ export const Summary = () => {
                     <span>{((item.sale_price || item.price) * item.quantity).toFixed(2)}€</span>
                 </div>
             ))}
+            <div className="item subtotal">
+                <span>Subtotal:</span>
+                <span>{totalPrice()}€</span>
+            </div>
             <div className="total">
                 <h2>Total:</h2>
-                <h3>{totalPrice().toFixed(2)}€</h3>
+                <h3>{totalPriceIVA()}€</h3>
             </div>
         </>
     )
