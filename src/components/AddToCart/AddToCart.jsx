@@ -10,31 +10,17 @@ const AddToCart = ({prod}) => {
   const { addToCart } = useContext(CartContext)
   const addItem = () => {
     addToCart(prod)
-    notify(prod.title, prod.quantity)
+    toast.success(`${prod.quantity} ud. of "${prod.title}" succesfully added to cart!`);
   }
-
-  const notify = (title, qty) => toast.success(`${qty} ud. of "${title}" succesfully added to cart!`, {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "dark",
-  });
-
   return (
     <>
       <ToastContainer
         position="top-center"
         autoClose={5000}
-        hideProgressBar
         newestOnTop
         closeOnClick
         rtl={false}
         pauseOnFocusLoss
-        draggable
         pauseOnHover
         theme="dark"
         />

@@ -5,7 +5,6 @@ import Swal from 'sweetalert2'
 import { db } from '../../firebase/config';
 import { CartContext } from '../../contexts/CartContext';
 
-
 const Checkout = () => {
   const [formFields, setFormFields] = useState({
     firstname: '',
@@ -34,21 +33,21 @@ const Checkout = () => {
     let errorMessage = null;
 
     if (!value.trim()) {
-      errorMessage = 'Este campo es requerido';
+      errorMessage = 'This field is required.';
     } else if (fieldName === 'email') {
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!regex.test(value)) {
-        errorMessage = 'Correo electrónico inválido';
+        errorMessage = 'Invalid email address.';
       }
-    } else if (fieldName === 'email2' && value !== formFields['email']) {
+    } else if (fieldName === 'email_2') {
       const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!regex.test(value)) {
-        errorMessage = 'El correo electrónico no coincide.';
+      if (!regex.test(value) || value !== formFields['email']) {
+        errorMessage = 'The email address doesn\'t match.';
       }
     } else if (fieldName === 'phone') {
       const regex = /^\d{9,}$/;
       if (!regex.test(value)) {
-        errorMessage = 'El formato de número de teléfono es erróneo.';
+        errorMessage = 'The format is not valid (+9 numbers).';
       }
     }
 
@@ -59,6 +58,7 @@ const Checkout = () => {
   };
 
   const { setCart, getCart, totalPriceIVA } = useContext(CartContext)
+  if(getCart().length === 0) window.location.replace("/");
   const validateCheckout = (e) => {
     e.preventDefault();
 
@@ -76,7 +76,6 @@ const Checkout = () => {
         total_price: totalPriceIVA(),
         date: new Date().toLocaleString('es-ES'),
       }
-      console.log(order);
       
       db().collection('orders').add(order)
         .then((res) => {
@@ -106,7 +105,10 @@ const Checkout = () => {
   }
 
   const hasErrors = () => {
-    if(formFields.length===0) return true;
+    const {firstname, surname, phone, email, email_2, card, date, number} = formFields;
+    if(!firstname || !surname || !phone || !email || !email_2 || !card || !date || !number){
+      return true;
+    }
     return Object.values(formErrors).some(error => error !== null);
   };
   

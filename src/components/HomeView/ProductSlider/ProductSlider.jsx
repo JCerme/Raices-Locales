@@ -25,7 +25,7 @@ export default function ProductSlider() {
     };
     return (
         <>
-            <h2 className="lasts-h2">Últimas unidades:</h2>
+            <h2 className="lasts-h2">Lasts units:</h2>
             <Slider {...settings} className="product-slides">
                 { products.map((product) => <Item key={product.id} prod={product}/>) }
             </Slider>
