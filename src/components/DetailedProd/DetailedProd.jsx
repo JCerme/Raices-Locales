@@ -8,6 +8,7 @@ import Error from '../Error/Error'
 const DetailedProd = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         db().collection('products').doc(id).get()
@@ -15,14 +16,24 @@ const DetailedProd = () => {
                 if (doc.exists) {
                     const prod = { id: doc.id, ...doc.data(), quantity: 1 };
                     setProduct(prod);
+                    setLoading(false);
                 } else {
                     console.log("No such document!");
                 }
             })
             .catch((err) => {
                 console.error(err);
-            });
+                setLoading(false);
+            })
     }, [id]);
+
+    if(loading){
+        return (
+            <div className="loader-box">
+                <svg className="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M304 48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zm0 416a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM48 304a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm464-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM142.9 437A48 48 0 1 0 75 369.1 48 48 0 1 0 142.9 437zm0-294.2A48 48 0 1 0 75 75a48 48 0 1 0 67.9 67.9zM369.1 437A48 48 0 1 0 437 369.1 48 48 0 1 0 369.1 437z"/></svg>
+            </div>
+        )
+    }
 
     return (
         product

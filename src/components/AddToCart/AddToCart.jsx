@@ -12,6 +12,7 @@ const AddToCart = ({prod}) => {
     addToCart(prod)
     toast.success(`${prod.quantity} ud. of "${prod.title}" succesfully added to cart!`);
   }
+
   return (
     <>
       <ToastContainer
@@ -25,7 +26,7 @@ const AddToCart = ({prod}) => {
         theme="dark"
         />
 
-      <button id="add-to-cart" data-id={prod.id} onClick={addItem}>
+      <button id="add-to-cart" data-id={prod.id} onClick={(prod) => addItem(prod)}>
           Add to Cart
           <IconContext.Provider value={{size: "16px", className: 'cart-icon'}}>
               <MdAddShoppingCart />

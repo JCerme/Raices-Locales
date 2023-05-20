@@ -28,6 +28,24 @@ code {
     padding: 0px 15%;
 }
 
+.loader-box{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.loader{
+    width: 30px;
+    animation: loader 3s infinite linear;
+    fill: white;
+    margin: auto;
+}
+
 .error-section{
     height: 80vh;
     width: 100vw;
@@ -342,12 +360,6 @@ header.header{
     .container{
         text-align: center;
         margin-bottom: 150px;
-        .loader{
-            width: 30px;
-            animation: loader 3s infinite linear;
-            fill: white;
-            margin: auto;
-        }
         .products{
             display: grid;
             grid-template-columns: repeat(3, 1fr);
